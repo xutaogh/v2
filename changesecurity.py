@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 import readjson
 import writejson
-from utils import is_number
+from v2ray_utils import is_number
 
 #主要程序部分
 print ("当前加密方式为：%s") % str(readjson.ConfSecurity)

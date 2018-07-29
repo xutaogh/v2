@@ -3,7 +3,7 @@
 import writejson
 import readjson
 import sys
-from utils import is_number
+from v2ray_utils import is_number
 
 
 #主要程序部分

@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 import readjson
 import writejson
-from utils import is_number
+from v2ray_utils import is_number
 
 #读取配置文件信息
 mystreamnetwork=str(readjson.ConfStreamNetwork)

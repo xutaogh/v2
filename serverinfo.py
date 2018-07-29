@@ -6,6 +6,7 @@ import urllib2
 import base64
 import os
 import json
+from v2ray_utils import cur_file_dir
 #获取本机IP地址
 myip = urllib2.urlopen('http://api.ipify.org').read()
 myip = myip.strip()
@@ -94,7 +95,7 @@ def GreenShow(string):
     print("\033[0m")
 
 def GenQRCode(name, string):
-    os.system("qrcode -w 200 -o ~/"+ name + " " + string)
+    os.system("qrcode -w 200 -o "+cur_file_dir()+"/web/"+ name + " " + string)
 
 def ShowQRCode(string):
     os.system("qrcode -w 200 "+string)

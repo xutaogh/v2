@@ -4,7 +4,7 @@
 import uuid
 import readjson
 import writejson
-from utils import is_number
+from v2ray_utils import is_number
 
 print ("当前AlterId为：%s") % str(readjson.ConfAlterId)
 alterid = raw_input("请输入新的alterID: ")
