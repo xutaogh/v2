@@ -40,6 +40,13 @@ chmod +x /usr/local/bin/v2ray
 # 更新Vray主程序
 bash <(curl -L -s https://install.direct/go.sh)
 
+mv /etc/v2ray/config.json /etc/v2ray/config.json.$(date "+%Y%M%d")
+cp /usr/local/v2ray.fun/json_template/server.json /etc/v2ray/config.json
+let PORT=$RANDOM+10000
+UUID=$(cat /proc/sys/kernel/random/uuid)
+sed -i "s/cc4f8d5b-967b-4557-a4b6-bde92965bc27/${UUID}/g" /etc/v2ray/config.json
+sed -i "s/12345/${PORT}/g" "/etc/v2ray/config.json"
+
 # 初始化环境
 python /usr/local/v2ray.fun/openport.py
 service v2ray restart
@@ -52,9 +59,7 @@ EOF
 chmod a+x /etc/rc.local
 fi
 
-mv /etc/v2ray/config.json /etc/v2ray/config.json.$(date "+%Y%M%d")
-
-echo "原来的config.json已经另外保存为/etc/v2ray/config.json.$(date "+%Y%M%d")"
 
 clear
+echo "原来的config.json已经另外保存为/etc/v2ray/config.json.$(date "+%Y%M%d")"
 echo "脚本已更新！"
