@@ -23,7 +23,8 @@ elif readjson.ConfStreamNetwork == "ws":
     mystreamnetwork = "WebSocket流量"
 elif readjson.ConfStreamNetwork == "h2":
     mystreamnetwork = "HTTP/2流量"
-else mystreamnetwork = "TCP 无伪装"
+else:
+    mystreamnetwork = "TCP 无伪装"
 
 # 显示当前配置
 print("当前传输方式为：%s") % mystreamnetwork
