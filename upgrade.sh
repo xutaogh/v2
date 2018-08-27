@@ -52,5 +52,9 @@ EOF
 chmod a+x /etc/rc.local
 fi
 
+mv /etc/v2ray/config.json /etc/v2ray/config.json.$(date "+%Y%M%d")
+
+echo "原来的config.json已经另外保存为/etc/v2ray/config.json.$(date "+%Y%M%d")"
+
 clear
 echo "脚本已更新！"
