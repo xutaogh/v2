@@ -5,7 +5,7 @@ import readjson
 import writejson
 from utils import is_number
 
-print "当前AlterID为：{}".format(str(readjson.ConfAlterId))
+print("当前AlterId为：%s") % str(readjson.ConfAlterId)
 alterID = raw_input("请输入新的alterID: ")
 
 if (is_number(alterID)):

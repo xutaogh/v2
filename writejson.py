@@ -104,6 +104,16 @@ def WriteStreamNetwork(network, para):
         wechat = json.load(streamfile)
         config[u"inbound"][u"streamSettings"] = wechat
 
+    if (network == "mkcp" and para == "kcp dtls"):
+        streamfile = file("/usr/local/v2ray.fun/json_template/kcp_dtls.json")
+        dtls = json.load(streamfile)
+        config[u"inbound"][u"streamSettings"] = dtls
+
+    if (network == "h2"):
+        streamfile = file("/usr/local/v2ray.fun/json_template/h2.json")
+        h2 = json.load(streamfile)
+        config[u"inbound"][u"streamSettings"] = h2
+
     config[u"inbound"][u"streamSettings"][u"security"] = security_backup
     config[u"inbound"][u"streamSettings"][u"tlsSettings"] = tls_settings_backup
     Write()

@@ -20,17 +20,27 @@ ConfUUID = ConfInbound[u"settings"][u"clients"][0][u"id"]
 ConfSecurity = ConfInbound[u"settings"][u"clients"][0][u"security"]
 ConfAlterId = ConfInbound[u"settings"][u"clients"][0][u"alterId"]
 ConfStream = ConfInbound[u"streamSettings"]
-ConfStreamKcpSettings = ConfStream[u'kcpSettings']
 ConfStreamNetwork = ConfStream[u"network"]
 ConfStreamSecurity = ConfStream[u"security"]
+
+if ConfStreamNetwork == "kcp":
+    ConfStreamSettings = ConfStream[u'kcpSettings']
+    if 'header' in ConfStreamSettings:
+        ConfStreamHeader = ConfStreamSettings[u"header"][u'type']
+    else:
+        ConfStreamHeader = "none"
+elif ConfStreamNetwork == "tcp":
+    ConfStreamSettings = ConfStream[u'tcpSettings']
+    if 'header' in ConfStreamSettings:
+        ConfStreamHeader = ConfStreamSettings[u"header"][u'type']
+    else:
+        ConfStreamHeader = "none"
+
+
+
+
 
 if config[u"inboundDetour"] and "port" in config[u"inboundDetour"][0]:
     ConfigDynPortRange = config[u"inboundDetour"][0][u"port"]
 else:
     ConfigDynPortRange = ""
-
-if ConfStreamNetwork == "kcp":
-    if 'header' in ConfStreamKcpSettings:
-        ConfStreamHeader = ConfStreamKcpSettings[u"header"][u'type']
-    else:
-        ConfStreamHeader = "none"

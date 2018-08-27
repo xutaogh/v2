@@ -1,9 +1,11 @@
 {
-    "network": "tcp",
+    "network": "h2",
     "security": "",
     "tlsSettings": {},
     "tcpSettings": null,
-    "httpSettings": null,
     "kcpSettings": null,
-    "wsSettings": null
+    "wsSettings": null,
+    "httpSettings":{
+        "path": ""
+      }
 }

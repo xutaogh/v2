@@ -49,6 +49,7 @@ bash <(curl -L -s https://install.direct/go.sh)
 ln -sf /usr/local/v2ray.fun/v2ray /usr/local/bin
 chmod +x /usr/bin/v2ray
 chmod +x /usr/local/bin/v2ray
+sed -i 's/\r$//' /usr/local/bin/v2ray
 rm -rf /etc/v2ray/config.json
 cp /usr/local/v2ray.fun/json_template/server.json /etc/v2ray/config.json
 let PORT=$RANDOM+10000

@@ -13,7 +13,7 @@
       "readBufferSize": 2,
       "writeBufferSize": 2,
       "header": {
-        "type": "srtp",
+        "type": "dtls",
         "request": null,
         "response": null
       }

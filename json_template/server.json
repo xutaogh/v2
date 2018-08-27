@@ -29,6 +29,7 @@
             "wsSettings": null,
             "network": "tcp",
             "kcpSettings": null,
+            "httpSettings": null,
             "tcpSettings": {
                 "header": {
                     "request": {

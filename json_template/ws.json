@@ -3,6 +3,7 @@
       "security": "",
       "tlsSettings": {},
       "tcpSettings": null,
+      "httpSettings": null,
       "kcpSettings": null,
       "wsSettings": {
         "connectionReuse": true,

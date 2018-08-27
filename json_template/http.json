@@ -50,5 +50,6 @@
         }
     },
     "kcpSettings": null,
+    "httpSettings": null,
     "wsSettings": null
 }

@@ -13,25 +13,32 @@ if readjson.ConfStreamNetwork == "kcp":
         mystreamnetwork = "mKCP 伪装 BT下载流量"
     elif(readjson.ConfStreamHeader == "kcp wechat-video"):
         mystreamnetwork = "mKCP 伪装 微信视频流量"
+    elif(readjson.ConfStreamHeader == "kcp dtls"):
+        mystreamnetwork = "mKCP 伪装 数据包传输层安全性协议"
     else:
-        mystreamnetwork = "mKCP"
+        mystreamnetwork = "mKCP 无伪装"
 elif readjson.ConfStreamNetwork == "http":
-    mystreamnetwork = "HTTP伪装"
+    mystreamnetwork = "TCP 伪装 HTTP"
 elif readjson.ConfStreamNetwork == "ws":
-    mystreamnetwork = "WebSocket"
+    mystreamnetwork = "WebSocket流量"
+elif readjson.ConfStreamNetwork == "h2":
+    mystreamnetwork = "HTTP/2流量"
+else mystreamnetwork = "TCP 无伪装"
 
 # 显示当前配置
 print("当前传输方式为：%s") % mystreamnetwork
 
 # 选择新的传输方式
 print("请选择新的传输方式：")
-print("1.普通TCP")
-print("2.HTTP伪装")
+print("1.TCP 无伪装")
+print("2.TCP 伪装 HTTP")
 print("3.WebSocket流量")
-print("4.普通mKCP")
+print("4.mKCP 无伪装")
 print("5.mKCP 伪装 FaceTime通话")
 print("6.mKCP 伪装 BT下载流量")
 print("7.mKCP 伪装 微信视频流量")
+print("8.mKCP 伪装 数据包传输层安全性协议")
+print("9.HTTP/2流量")
 
 newstreamnetwork = raw_input()
 
@@ -44,11 +51,11 @@ else:
         if(newstreamnetwork == "1"):
             writejson.WriteStreamNetwork("tcp", "none")
         elif(newstreamnetwork == "2"):
-            print("请输入你想要为伪装的域名（不不不需要http）：")
+            print("请输入你想要为伪装的域名（!! 不 要 http!!）：")
             host = raw_input()
             writejson.WriteStreamNetwork("tcp", str(host))
         elif(newstreamnetwork == "3"):
-            print("请输入你的服务器绑定域名（不不不需要http）：")
+            print("请输入你的服务器绑定域名（!! 不 要 http!!）：")
             host = raw_input()
             writejson.WriteStreamNetwork("ws", str(host))
         elif(newstreamnetwork == "4"):
@@ -59,6 +66,11 @@ else:
             writejson.WriteStreamNetwork("mkcp", "kcp utp")
         elif(newstreamnetwork == "7"):
             writejson.WriteStreamNetwork("mkcp", "kcp wechat-video")
+        elif(newstreamnetwork == "8"):
+            writejson.WriteStreamNetwork("mkcp", "kcp dtls")
+        elif(newstreamnetwork == "9"):
+            writejson.WriteStreamNetwork("h2","none")
+
     else:
         print("请输入有效数字！")
         exit

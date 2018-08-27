@@ -12,20 +12,48 @@ myip = myip.strip()
 
 # 判断传输配置
 mystreamnetwork = str(readjson.ConfStreamNetwork)
+streamtype = str()
+mystream = str()
 
 if readjson.ConfStreamNetwork == "kcp":
     if(readjson.ConfStreamHeader == "utp"):
-        mystreamnetwork = "mKCP utp BT下载流量"
+        mystreamnetwork = "kcp"
+        streamtype = "utp"
+        mystream = "mKCP 伪装 BT下载流量"
     elif(readjson.ConfStreamHeader == "srtp"):
-        mystreamnetwork = "mKCP srtp 伪装FaceTime通话"
+        mystreamnetwork = "kcp"
+        streamtype = "srtp"
+        mystream = "mKCP 伪装 FaceTime通话"
     elif(readjson.ConfStreamHeader == "wechat-video"):
-        mystreamnetwork = "mKCP wechat-video 伪装微信视频流量"
+        mystreamnetwork = "kcp"
+        streamtype = "wechat-video"
+        mystream = "mKCP 微信视频流量"
+    elif(readjson.ConfStreamHeader == "dtls"):
+        mystreamnetwork = "kcp"
+        streamtype = "dtls"
+        mystream = "mKCP 伪装 数据包传输层安全性协议"
     else:
-        mystreamnetwork = "mKCP"
-elif readjson.ConfStreamNetwork == "http":
-    mystreamnetwork = "HTTP/2"
+        mystreamnetwork = "kcp"
+        streamtype = "none"
+        mystream = "mKCP 无伪装"
+elif readjson.ConfStreamNetwork == "h2":
+    mystreamnetwork = "h2"
+    streamtype = "none"
+    mystream = "HTTP/2流量"
 elif readjson.ConfStreamNetwork == "ws":
-    mystreamnetwork = "WebSocket"
+    mystreamnetwork = "ws"
+    streamtype = "none"
+    mystream = "WebSocket流量"
+elif readjson.ConfStreamNetwork == "tcp":
+    if(readjson.ConfStreamHeader == "http"):
+        mystreamnetwork = "tcp"
+        streamtype = "http"
+        mystream = "TCP 伪装 HTTP"
+    else:
+        mystreamnetwork = "tcp"
+        streamtype = "none"
+        mystream = "TCP 无伪装"
+
 
 if (readjson.ConfStreamSecurity == "tls"):
     mystreamsecurity = "TLS：开启"
@@ -38,7 +66,7 @@ print("主端口：%s") % str(readjson.ConfPort)
 print("UUID：%s") % str(readjson.ConfUUID)
 print("alter ID: %s") % str(readjson.ConfAlterId)
 print("加密方式：%s") % str(readjson.ConfSecurity)
-print("传输方式：%s") % str(mystreamnetwork)
+print("传输方式：%s") % str(mystream)
 if readjson.ConfigDynPortRange:
     print("动态端口范围:%s") % str(readjson.ConfigDynPortRange)
 else:
@@ -66,8 +94,8 @@ def GetVmessUrl():
     config["id"] = str(readjson.ConfUUID)
     config["aid"] = str(readjson.ConfAlterId)
     config["net"] = str(mystreamnetwork)
-    if mystreamnetwork == "kcp":
-        config["type"] = str(readjson.ConfStreamHeader)
+    config["type"] = str(streamtype)
+
     if (readjson.ConfSecurity == "tls"):
         config["tls"] = "tls"
     base64Str = base64.encodestring(json.dumps(config))
@@ -78,12 +106,6 @@ def GetVmessUrl():
 
 def GetVmessUrlPepi():
     mystreamnetwork = str(readjson.ConfStreamNetwork)
-    if readjson.ConfStreamNetwork == "http":
-        mystreamnetwork = "http"
-    elif readjson.ConfStreamNetwork == "ws":
-        mystreamnetwork = "websocket"
-    else:
-        mystreamnetwork = "none"
     base64Str = base64.urlsafe_b64encode(str(readjson.ConfSecurity) + ":" + str(
         readjson.ConfUUID) + "@" + str(myip) + ":" + str(readjson.ConfPort))
     vmessurl = "vmess://" + base64Str + "?obfs=" + str(mystreamnetwork)
