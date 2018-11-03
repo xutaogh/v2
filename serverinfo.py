@@ -32,12 +32,22 @@ if (readjson.ConfStreamSecurity == "tls"):
 else:
     mystreamsecurity = "TLS：关闭"
 
+def GetDomain():
+    if (readjson.ConfStreamSecurity == "tls"):
+        domainfile = file("/usr/local/v2ray.fun/mydomain", "r")
+        content = domainfile.read()
+        domainfile.close()
+        return str(content)
+    else:
+        return str(myip)
+
 # 输出信息
-print("服务器IP：%s") % str(myip)
+print("服务器IP：%s") % GetDomain()
 print("主端口：%s") % str(readjson.ConfPort)
 print("UUID：%s") % str(readjson.ConfUUID)
 print("alter ID: %s") % str(readjson.ConfAlterId)
 print("加密方式：%s") % str(readjson.ConfSecurity)
+print("tls：%s") % str(readjson.ConfStreamSecurity)
 print("传输方式：%s") % str(mystreamnetwork)
 if readjson.ConfigDynPortRange:
     print("动态端口范围:%s") % str(readjson.ConfigDynPortRange)
@@ -45,7 +55,6 @@ else:
     print("动态端口:禁止")
 
 
-# config["host"] = str(readjson.ConfPath)
 
 def GetVmessUrl():
     config = {
@@ -61,14 +70,14 @@ def GetVmessUrl():
         "path": "",
         "tls": "",
     }
-    config["add"] = str(myip)
+    config["add"] = GetDomain()
     config["port"] = str(readjson.ConfPort)
     config["id"] = str(readjson.ConfUUID)
     config["aid"] = str(readjson.ConfAlterId)
     config["net"] = str(mystreamnetwork)
     if mystreamnetwork == "kcp":
         config["type"] = str(readjson.ConfStreamHeader)
-    if (readjson.ConfSecurity == "tls"):
+    if (readjson.ConfStreamSecurity == "tls"):
         config["tls"] = "tls"
     base64Str = base64.encodestring(json.dumps(config))
     base64Str = ''.join(base64Str.split())
@@ -85,7 +94,7 @@ def GetVmessUrlPepi():
     else:
         mystreamnetwork = "none"
     base64Str = base64.urlsafe_b64encode(str(readjson.ConfSecurity) + ":" + str(
-        readjson.ConfUUID) + "@" + str(myip) + ":" + str(readjson.ConfPort))
+        readjson.ConfUUID) + "@" + GetDomain() + ":" + str(readjson.ConfPort))
     vmessurl = "vmess://" + base64Str + "?obfs=" + str(mystreamnetwork)
     return vmessurl
 
