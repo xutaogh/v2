@@ -79,7 +79,7 @@ def GetVmessUrl():
         config["type"] = str(readjson.ConfStreamHeader)
     if (readjson.ConfStreamSecurity == "tls"):
         config["tls"] = "tls"
-    base64Str = base64.encodestring(json.dumps(config))
+    base64Str = base64.urlsafe_b64encode(json.dumps(config))
     base64Str = ''.join(base64Str.split())
     vmessurl = "vmess://" + base64Str
     return vmessurl
@@ -115,7 +115,7 @@ def ShowQRCode(string):
 
 print("=====  V2rayN v2.x =====")
 GreenShow(GetVmessUrl())
-GenQRCode("config_v2rayN.png", GetVmessUrl())
+GenQRCode("config_v2rayN.png", "vmess://"+base64.urlsafe_b64encode(GetVmessUrl()))
 
 print("=====  Pepi(ios) 1.0.7(87) =====")
 GreenShow(GetVmessUrlPepi())
