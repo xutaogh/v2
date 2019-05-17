@@ -34,7 +34,7 @@ else:
 
 def GetDomain():
     if (readjson.ConfStreamSecurity == "tls"):
-        domainfile = file("/usr/local/v2ray.fun/mydomain", "r")
+        domainfile = file("/usr/local/v2/mydomain", "r")
         content = domainfile.read()
         domainfile.close()
         return str(content)
