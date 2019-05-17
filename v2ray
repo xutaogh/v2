@@ -6,13 +6,13 @@ export PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
 
 echo ""
 
-echo "欢迎使用 V2ray.fun 管理程序"
+echo "欢迎使用 V2 管理程序"
 echo ""
 echo "1.服务管理"
 echo "2.更改配置"
 echo "3.查看服务端信息"
 echo "4.下载客户端配置文件"
-echo "5.更新v2ray和v2ray.fun"
+echo "5.更新v2ray和v2"
 echo "请输入数字选择功能(按回车键退出)："
 
 while :; do echo
@@ -29,7 +29,7 @@ while :; do echo
 done
 
 if [[ ${choice} == 5 ]]; then
-    bash -c "$(curl -fsSL https://git.io/vpOex)"
+    bash -c "$(curl -fsSL https://raw.githubusercontent.com/xutaogh/v2/master/upgrade.sh)"
 fi
 if [[ ${choice} == 1 ]]; then
     echo "1.启动服务"
