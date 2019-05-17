@@ -21,7 +21,7 @@ def EnDynPort(en):
     if en == 1:
         config[u"inbound"][u"settings"].update(
             {u"detour": {u"to": "dynamicPort"}})
-        dyn_port = file("/usr/local/v2ray.fun/json_template/dyn_port.json")
+        dyn_port = file("/usr/local/v2/json_template/dyn_port.json")
         srtp = json.load(dyn_port)
         config[u"inboundDetour"] = srtp
         config[u"inboundDetour"][0][u"settings"][u"default"][u"alterId"] = int(
@@ -68,39 +68,39 @@ def WriteStreamNetwork(network, para):
     security_backup = config[u"inbound"][u"streamSettings"][u"security"]
     tls_settings_backup = config[u"inbound"][u"streamSettings"][u"tlsSettings"]
     if (network == "tcp" and para == "none"):
-        streamfile = file("/usr/local/v2ray.fun/json_template/tcp.json")
+        streamfile = file("/usr/local/v2/json_template/tcp.json")
         tcp = json.load(streamfile)
         config[u"inbound"][u"streamSettings"] = tcp
 
     if (network == "tcp" and para != "none"):
-        streamfile = file("/usr/local/v2ray.fun/json_template/http.json")
+        streamfile = file("/usr/local/v2/json_template/http.json")
         http = json.load(streamfile)
         http[u"tcpSettings"][u"header"][u"request"][u"headers"][u"Host"] = para
         config[u"inbound"][u"streamSettings"] = http
 
     if (network == "ws"):
-        streamfile = file("/usr/local/v2ray.fun/json_template/ws.json")
+        streamfile = file("/usr/local/v2/json_template/ws.json")
         ws = json.load(streamfile)
         config[u"inbound"][u"streamSettings"] = ws
         config[u"inbound"][u"streamSettings"][u"wsSettings"][u"headers"][u"host"] = para
 
     if (network == "mkcp" and para == "none"):
-        streamfile = file("/usr/local/v2ray.fun/json_template/kcp.json")
+        streamfile = file("/usr/local/v2/json_template/kcp.json")
         kcp = json.load(streamfile)
         config[u"inbound"][u"streamSettings"] = kcp
 
     if (network == "mkcp" and para == "kcp utp"):
-        streamfile = file("/usr/local/v2ray.fun/json_template/kcp_utp.json")
+        streamfile = file("/usr/local/v2/json_template/kcp_utp.json")
         utp = json.load(streamfile)
         config[u"inbound"][u"streamSettings"] = utp
 
     if (network == "mkcp" and para == "kcp srtp"):
-        streamfile = file("/usr/local/v2ray.fun/json_template/kcp_srtp.json")
+        streamfile = file("/usr/local/v2/json_template/kcp_srtp.json")
         srtp = json.load(streamfile)
         config[u"inbound"][u"streamSettings"] = srtp
 
     if (network == "mkcp" and para == "kcp wechat-video"):
-        streamfile = file("/usr/local/v2ray.fun/json_template/kcp_wechat.json")
+        streamfile = file("/usr/local/v2/json_template/kcp_wechat.json")
         wechat = json.load(streamfile)
         config[u"inbound"][u"streamSettings"] = wechat
 
@@ -115,12 +115,12 @@ def WriteTLS(action, domain):
         crt_file = "/root/.acme.sh/" + domain + "_ecc" + "/fullchain.cer"
         key_file = "/root/.acme.sh/" + domain + "_ecc" + "/" + domain + ".key"
         config[u"inbound"][u"streamSettings"][u"security"] = "tls"
-        tls_file = file("/usr/local/v2ray.fun/json_template/tlssettings.json")
+        tls_file = file("/usr/local/v2/json_template/tlssettings.json")
         tls_settings = json.load(tls_file)
         tls_settings[u"certificates"][0][u"certificateFile"] = crt_file
         tls_settings[u"certificates"][0][u"keyFile"] = key_file
         config[u"inbound"][u"streamSettings"][u"tlsSettings"] = tls_settings
-        domainfile = file("/usr/local/v2ray.fun/mydomain", "w+")
+        domainfile = file("/usr/local/v2/mydomain", "w+")
         domainfile.writelines(str(domain))
         domainfile.close()
         Write()
