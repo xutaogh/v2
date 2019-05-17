@@ -12,8 +12,8 @@ rm -rf /var/log/v2ray/  >/dev/null 2>&1
 rm -rf /lib/systemd/system/v2ray.service  >/dev/null 2>&1
 rm -rf /etc/init.d/v2ray  >/dev/null 2>&1
 
-# 卸载V2ray.Fun
-rm -rf /usr/local/v2ray.fun >/dev/null 2>&1
+# 卸载V2
+rm -rf /usr/local/v2 >/dev/null 2>&1
 rm -rf /usr/local/bin/v2ray >/dev/null 2>&1
 rm -rf /root/install.sh  >/dev/null 2>&1
 echo "卸载完成！"
