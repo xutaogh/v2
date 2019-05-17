@@ -52,8 +52,8 @@ if [[ ${choice} == 1 ]]; then
     done
     if [[ ${schoice} == 1 ]]; then
         service v2ray start
-        python /usr/local/v2ray.fun/openport.py
-        python /usr/local/v2ray.fun/genclient.py
+        python /usr/local/v2/openport.py
+        python /usr/local/v2/genclient.py
         echo "服务启动成功！"
         bash /usr/local/bin/v2ray
     fi
@@ -64,8 +64,8 @@ if [[ ${choice} == 1 ]]; then
     fi
     if [[ ${schoice} == 3 ]]; then
         service v2ray restart
-        python /usr/local/v2ray.fun/openport.py
-        python /usr/local/v2ray.fun/genclient.py
+        python /usr/local/v2/openport.py
+        python /usr/local/v2/genclient.py
         echo "服务已重启！"
         bash /usr/local/bin/v2ray
     fi
@@ -107,15 +107,15 @@ if [[ ${choice} == 2 ]]; then
 	    fi
     done
     if [[ ${changechoice} == 8 ]]; then
-        python /usr/local/v2ray.fun/en_dyn_port.py
+        python /usr/local/v2/en_dyn_port.py
 	    service v2ray restart
         echo ""
         echo "更改动态端口成功！"
         bash /usr/local/bin/v2ray
     fi
     if [[ ${changechoice} == 7 ]]; then
-        python /usr/local/v2ray.fun/change_alter_ID.py
-        python /usr/local/v2ray.fun/genclient.py
+        python /usr/local/v2/change_alter_ID.py
+        python /usr/local/v2/genclient.py
 	    service v2ray restart
         echo ""
         echo "alterId修改成功！"
@@ -123,8 +123,8 @@ if [[ ${choice} == 2 ]]; then
     fi
     
     if [[ ${changechoice} == 1 ]]; then
-        python /usr/local/v2ray.fun/changeuuid.py
-        python /usr/local/v2ray.fun/genclient.py
+        python /usr/local/v2/changeuuid.py
+        python /usr/local/v2/genclient.py
 	    service v2ray restart
         echo ""
         echo "UUID修改成功！"
@@ -132,9 +132,9 @@ if [[ ${choice} == 2 ]]; then
     fi
     
     if [[ ${changechoice} == 2 ]]; then
-        python /usr/local/v2ray.fun/changeport.py
-        python /usr/local/v2ray.fun/genclient.py
-        python /usr/local/v2ray.fun/openport.py
+        python /usr/local/v2/changeport.py
+        python /usr/local/v2/genclient.py
+        python /usr/local/v2/openport.py
 	    service v2ray restart
         echo ""
         echo "端口修改成功！"
@@ -142,8 +142,8 @@ if [[ ${choice} == 2 ]]; then
     fi
     
     if [[ ${changechoice} == 3 ]]; then
-        python /usr/local/v2ray.fun/changesecurity.py
-        python /usr/local/v2ray.fun/genclient.py
+        python /usr/local/v2/changesecurity.py
+        python /usr/local/v2/genclient.py
 	    service v2ray restart
         echo ""
         echo "加密方式修改成功！"
@@ -151,8 +151,8 @@ if [[ ${choice} == 2 ]]; then
     fi
     
     if [[ ${changechoice} == 4 ]]; then
-        python /usr/local/v2ray.fun/changestream.py
-        python /usr/local/v2ray.fun/genclient.py
+        python /usr/local/v2/changestream.py
+        python /usr/local/v2/genclient.py
 	    service v2ray restart
         echo ""
         echo "传输模式修改成功！"
@@ -160,8 +160,8 @@ if [[ ${choice} == 2 ]]; then
     fi
     
     if [[ ${changechoice} == 5 ]]; then
-        python /usr/local/v2ray.fun/changetls.py
-        python /usr/local/v2ray.fun/genclient.py
+        python /usr/local/v2/changetls.py
+        python /usr/local/v2/genclient.py
 	    service v2ray restart
         echo ""
         echo "TLS设置修改成功！"
@@ -169,7 +169,7 @@ if [[ ${choice} == 2 ]]; then
     fi
 
     if [[ ${changechoice} == 6 ]]; then
-        python /usr/local/v2ray.fun/changead.py
+        python /usr/local/v2/changead.py
 	    service v2ray restart
         echo ""
         echo "广告拦截功能设置成功！"
@@ -178,12 +178,12 @@ if [[ ${choice} == 2 ]]; then
 fi
 
 if [[ ${choice} == 3 ]]; then
-    python /usr/local/v2ray.fun/serverinfo.py
+    python /usr/local/v2/serverinfo.py
     bash /usr/local/bin/v2ray
 fi
 
 if [[ ${choice} == 4 ]]; then
-    python /usr/local/v2ray.fun/genclient.py && echo "保存成功！(/root/config.json)"
+    python /usr/local/v2/genclient.py && echo "保存成功！(/root/config.json)"
     read -n1 -p  "是否通过sz来传输json配置文件(y/n)" ans
     if [[ ${ans} =~ [yY] ]]; then
         which sz 2>/dev/null && sz /root/config.json
