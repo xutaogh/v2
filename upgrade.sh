@@ -26,28 +26,28 @@ else
 fi
 
 # 重装V2ray.fun
-rm -rf /usr/local/v2ray.fun
+rm -rf /usr/local/v2
 cd /usr/local/
 git clone https://github.com/xutaogh/v2
-cd /usr/local/v2ray.fun/
+cd /usr/local/v2/
 chmod +x *.py
 
 # 重装操作菜单
 rm -rf /usr/local/bin/v2ray
-ln -sf /usr/local/v2ray.fun/v2ray /usr/local/bin/
+ln -sf /usr/local/v2/v2ray /usr/local/bin/
 chmod +x /usr/local/bin/v2ray
 
 # 更新Vray主程序
 bash <(curl -L -s https://install.direct/go.sh)
 
 # 初始化环境
-python /usr/local/v2ray.fun/openport.py
+python /usr/local/v2/openport.py
 service v2ray restart
 
 cat /etc/rc.local | grep openport.py
 if [[ $? -ne 0 ]]; then
 cat>>/etc/rc.local<<EOF
-python /usr/local/v2ray.fun/openport.py
+python /usr/local/v2/openport.py
 EOF
 chmod a+x /etc/rc.local
 fi
