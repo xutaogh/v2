@@ -20,7 +20,7 @@ myIP = urllib2.urlopen('http://api.ipify.org').read()
 myIP = myIP.strip()
 
 # 加载客户端配置模板
-clientJsonFile = file("/usr/local/v2ray.fun/json_template/client.json")
+clientJsonFile = file("/usr/local/v2/json_template/client.json")
 clientConfig = json.load(clientJsonFile)
 
 # 使用服务端配置来修改客户端模板
@@ -34,7 +34,7 @@ clientConfig[u"outbound"][u"streamSettings"] = readjson.ConfStream
 if str(readjson.ConfStreamSecurity) == "":
     clientConfig[u"outbound"][u"settings"][u"vnext"][0][u"address"] = str(myIP)
 else:
-    domainfile = file("/usr/local/v2ray.fun/mydomain", "r")
+    domainfile = file("/usr/local/v2/mydomain", "r")
     content = domainfile.read()
     clientConfig[u"outbound"][u"settings"][u"vnext"][0][u"address"] = str(
         content)
